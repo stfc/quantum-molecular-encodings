@@ -95,7 +95,7 @@ If you use Qiskit Machine Learning in your work, please consider citing the rele
 
 
 ## License
-This project uses the [Apache License 2.0](LICENSE.md).
+This project uses the [Apache License 2.0](LICENSE).
 
 
 > [hartree.stfc.ac.uk](https://www.hartree.stfc.ac.uk/) &nbsp;&middot;&nbsp;
