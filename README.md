@@ -10,32 +10,26 @@
 <h4 align="center">Code and data from the publication by <a href="http://arxiv.org/abs/?" target="_blank">Boy et al. (2025)</a></h4>
 
 <p align="center">
-
   <a href="https://arxiv.org/abs/?">
     <img src="https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg"
          alt="arXiv">
   </a>
-  
   <a href="https://img.shields.io/github/v/release/stfc/quantum-molecular-encodings">
       <img src="https://img.shields.io/github/v/release/stfc/quantum-molecular-encodings"
         alt="GitHub Release">
   </a>
-
   <a href="https://github.com/qiskit-community/qiskit-machine-learning">
       <img src="https://img.shields.io/badge/Qiskit_ML%20-%20%3E%3D0.8%20-%20%236133BD?logo=Qiskit_ML"
         alt="Qiskit ML">
   </a>
-
   <a href="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fstfc%2Fquantum-molecular-encodings&label=Repository%20Visits&countColor=%230c7ebe&style=flat&labelStyle=none">
       <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fstfc%2Fquantum-molecular-encodings&label=Repository%20Visits&countColor=%230c7ebe&style=flat&labelStyle=none"
         alt="Visitors">
   </a>
-  
   <a href="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white">
     <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white"
       alt="Python Language">
   </a>
-
   <a href="https://img.shields.io/github/license/stfc/quantum-molecular-encodings">
     <img src="https://img.shields.io/github/license/stfc/quantum-molecular-encodings"
       alt="GitHub License">
