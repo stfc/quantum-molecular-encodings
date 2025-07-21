@@ -1,0 +1,43 @@
+# Line Properties
+lines.linewidth: 1.5
+
+# Font options
+font.size: 8
+font.family: STIXGeneral
+mathtext.fontset: stix
+
+# Automatically make the plots look nice
+figure.autolayout: True
+figure.constrained_layout.use: True
+
+# LaTeX options
+text.usetex: False
+
+# Legend options
+legend.loc:           best
+legend.frameon:       False
+legend.framealpha:    1.0
+legend.facecolor:     inherit  # inherit from axes.facecolor; or color spec
+legend.fontsize: 6
+
+# Figure options for publications
+figure.dpi: 300
+figure.figsize: 3.321, 3.0
+
+# Histogram options
+hist.bins: auto
+
+# Ticks inside plots; more space devoted to plot.
+xtick.direction: in
+ytick.direction: in
+xtick.bottom: True
+ytick.left: True
+xtick.top: False
+ytick.right: False
+
+# Setup Colours
+# 'orange blue cyan magenta red teal grey black' from Paul Tol's Notes: https://personal.sron.nl/~pault/
+axes.prop_cycle: cycler('color', ['EE7733', '0077BB', '33BBEE', 'EE3377', 'CC3311', '009988', 'BBBBBB', '000000'])
+
+# Use a non-clashing default colour map
+image.cmap: cividis
