@@ -49,6 +49,7 @@
 
 > [!WARNING]
 > Change the Arxiv number after publication
+> The full data can be accessed here on Zenodo with the following DOI: 10.5281/zenodo.16520497
 
 ## How to cite
 
