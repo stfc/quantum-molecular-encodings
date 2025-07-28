@@ -47,9 +47,8 @@
 
 ## Key Features
 
-> [!WARNING]
 > Change the Arxiv number after publication
-> The full data can be accessed here on Zenodo with the following DOI: 10.5281/zenodo.16520497
+> The full data can be accessed here on Zenodo: https://zenodo.org/records/16520498
 
 ## How to cite
 
