@@ -7,11 +7,11 @@
   <br>
 </h1>
 
-<h4 align="center">Code and data from the publication by <a href="http://arxiv.org/abs/?" target="_blank">Boy et al. (2025)</a></h4>
+<h4 align="center">Code and data from the publication by <a href="http://arxiv.org/abs/2507.20422" target="_blank">Boy et al. (2025)</a></h4>
 
 <p align="center">
   <a href="https://arxiv.org/abs/?">
-    <img src="https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg"
+    <img src="https://img.shields.io/badge/arXiv-2507.20422-b31b1b.svg"
          alt="arXiv">
   </a>
   <a href="https://img.shields.io/github/v/release/stfc/quantum-molecular-encodings">
@@ -52,6 +52,24 @@
 > The full data can be accessed here on Zenodo: https://zenodo.org/records/16520498
 
 ## How to cite
+
+```bibtex
+@ARTICLE{2025arXiv250720422B,
+       author = {{Boy}, Choy and {Altamura}, Edoardo and {Manawadu}, Dilhan and {Tavernelli}, Ivano and {Mensa}, Stefano and {Wales}, David J.},
+        title = "{Encoding molecular structures in quantum machine learning}",
+      journal = {arXiv e-prints},
+     keywords = {Quantum Physics},
+         year = 2025,
+        month = jul,
+          eid = {arXiv:2507.20422},
+        pages = {arXiv:2507.20422},
+archivePrefix = {arXiv},
+       eprint = {2507.20422},
+ primaryClass = {quant-ph},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2025arXiv250720422B},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+```
 
 ## How to use
 
