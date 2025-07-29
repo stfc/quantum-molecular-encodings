@@ -47,7 +47,7 @@
 
 ## Key Features
 
-> Change the Arxiv number after publication
+> The link to the corresponding paper can be found on: https://arxiv.org/abs/2507.20422
 > 
 > The full data can be accessed here on Zenodo: https://zenodo.org/records/16520498
 
