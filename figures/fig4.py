@@ -1,13 +1,16 @@
+import sys
+sys.path.append("../")
+
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-
+from quantum_molecular_encodings.paths import MPL_FILE, EXCEL_DATA_DIR, OVERLAPS_DIR
 SAMPLER_TYPE = "statevector"
 expectation_label = "Fidelity"
 # Configure the plot style
-plt.style.use("../molecular_encodings/molecular.mplstyle")
+plt.style.use(MPL_FILE)
 
 # Create a heatmap visualization of the matrix
 fig, axes = plt.subplots(
@@ -49,7 +52,8 @@ for ax, gate in zip(axes.flat[:3], ["rxx", "ryy", "rzz"]):
     ])
 
     # Load hydrocarbon data from an Excel file
-    dataframe = pd.read_excel('../data/hydrocarbons/hydrocarbon_oxygen_series_unique_smiles.xlsx', sheet_name='Sheet1', header=0)
+    DATAFILE = EXCEL_DATA_DIR / "hydrocarbon_oxygen_series_unique_smiles.xlsx"
+    dataframe = pd.read_excel(DATAFILE, sheet_name='Sheet1', header=0)
     dataframe = dataframe.loc[dataframe['Number of Oxygens'] == 0]
 
     smiles_list = dataframe['Unique_SMILES'].to_list()  # List of SMILES strings representing molecules
@@ -60,9 +64,10 @@ for ax, gate in zip(axes.flat[:3], ["rxx", "ryy", "rzz"]):
     indices_lower_triangular = np.tril_indices(matrix_size)
     expectation_matrix = np.full((matrix_size, matrix_size), np.nan)  # Initialize with NaN values
 
+
     # Load expectation values from the log file
     data = np.genfromtxt(
-        "../overlap/" + log_filename,
+        f"{OVERLAPS_DIR}/" + log_filename,
         delimiter=',',
         dtype=[('row', int), ('col', int), ('value', float)]
     )
@@ -100,8 +105,8 @@ for ax, gate in zip(axes.flat[3:], ["rxx", "ryy", "rzz"]):
         f"{ENCODING_LAYER_CONFIG['entangling_layer']}",
         f"Lx{ENCODING_LAYER_CONFIG['n_layers']}.txt"
     ])
-
-    dataframe = pd.read_excel('../data/hydrocarbons/hydrocarbon_oxygen_reordered_series.xlsx', sheet_name='data', header=0)
+    DATAFILE = EXCEL_DATA_DIR / "hydrocarbon_oxygen_reordered_series.xlsx"
+    dataframe = pd.read_excel(DATAFILE, sheet_name='data', header=0)
     dataframe = dataframe.loc[dataframe['Number of Oxygens'] == 1]
 
     smiles_list = dataframe['SMILES'].to_list()  # List of SMILES strings representing molecules
@@ -114,7 +119,7 @@ for ax, gate in zip(axes.flat[3:], ["rxx", "ryy", "rzz"]):
 
     # Load expectation values from the log file
     data = np.genfromtxt(
-        "../overlap/" + log_filename,
+        f"{OVERLAPS_DIR}/" + log_filename,
         delimiter=',',
         dtype=[('row', int), ('col', int), ('value', float)]
     )
@@ -145,6 +150,6 @@ cbaxes.xaxis.set_label_position('bottom')
 plt.subplots_adjust(left=0.005, right=0.995, top=0.95, bottom=0.12)
 
 plt.savefig("fig4.pdf")
-plt.show()
+plt.close()
 
 

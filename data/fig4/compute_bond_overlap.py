@@ -7,23 +7,26 @@ from inspect import getmro
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 # Import custom modules
-sys.path.append("..")
-from molecular_encodings.matrix import BondOrderMatrix
-from molecular_encodings.encodings.bond import BondFeatureMap
-from molecular_encodings.encodings.overlap import UnitaryOverlap
+sys.path.append("../../")
+from quantum_molecular_encodings.paths import BACKENDS_DIR, EXCEL_DATA_DIR, OVERLAPS_DIR
+
+
+from quantum_molecular_encodings.matrix import BondOrderMatrix
+from quantum_molecular_encodings.encodings.bond import BondFeatureMap
+from quantum_molecular_encodings.encodings.overlap import UnitaryOverlap
 
 # Configuration for the quantum encoding layer
 ENCODING_LAYER_CONFIG = {
     "n_layers": 1,
     "initial_layer": "ry",
-    "entangling_layer": "rzz",
+    "entangling_layer": "rxx",
     "n_atom_to_qubit": 1,
     "interleaved": None,
 }
 
 # File paths for noise model and hardware backend
-NOISE_MODEL_PATH = "../data/backends/fez_2024_12_22.noise_model.pkl"
-BACKEND_PATH = "../data/backends/fez_2024_12_22.backend_image.pkl"
+NOISE_MODEL_PATH = f"{BACKENDS_DIR}/fez_2024_12_22.noise_model.pkl"
+BACKEND_PATH = f"{BACKENDS_DIR}/fez_2024_12_22.backend_image.pkl"
 SAMPLER_TYPE = "statevector"
 NUM_SHOTS = 10_000
 
@@ -62,7 +65,7 @@ elif SAMPLER_TYPE == "noisy_aer":
     pass_manager = generate_preset_pass_manager(optimization_level=3, backend=device_backend)
 
     backend_options = {
-        "method": "density_matrix",
+        "method": "statevector",
         "noise_model": noise_model,
         "shots": NUM_SHOTS,
         "device": "CPU",
@@ -76,7 +79,9 @@ else:
     raise ValueError("Invalid sampler type")
 
 # Load molecular data
-dataframe = pd.read_excel('../data/hydrocarbons/hydrocarbon_oxygen_reordered_series.xlsx', sheet_name='data', header=0)
+HYDROCARBON_DATA_FILE = EXCEL_DATA_DIR / 'hydrocarbon_oxygen_reordered_series.xlsx'
+HYDROCARBON_DATA_FILE = DA
+dataframe = pd.read_excel(HYDROCARBON_DATA_FILE, sheet_name='data', header=0)
 dataframe = dataframe.loc[dataframe['Number of Oxygens'] == 1]
 
 smiles_list = dataframe['SMILES'].to_list()
@@ -90,6 +95,7 @@ log_filename = '_'.join([
     f"{ENCODING_LAYER_CONFIG['entangling_layer']}",
     f"Lx{ENCODING_LAYER_CONFIG['n_layers']}.txt",
 ])
+log_filename = OVERLAPS_DIR / log_filename
 with open(log_filename, 'w') as log_file:
     print(f"Writing into {log_filename}")
     print(f"# primitive_MRO = {getmro(type(sampler))}", file=log_file)
