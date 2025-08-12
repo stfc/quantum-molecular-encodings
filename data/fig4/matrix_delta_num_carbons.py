@@ -3,8 +3,11 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
+from quantum_molecular_encodings.paths import MPL_FILE, EXCEL_DATA_DIR
+
 # Load molecular data
-dataframe = pd.read_excel('../data/hydrocarbons/hydrocarbon_oxygen_reordered_series.xlsx', sheet_name='data', header=0)
+HYDROCARBON_DATA_FILE = EXCEL_DATA_DIR / 'hydrocarbon_oxygen_reordered_series.xlsx'
+dataframe = pd.read_excel(HYDROCARBON_DATA_FILE, sheet_name='data', header=0)
 dataframe = dataframe.loc[dataframe['Number of Oxygens'] == 1]
 
 smiles = dataframe['SMILES'].to_list()
@@ -25,7 +28,7 @@ for i, j in zip(*ij):
 
 valid_index_pairs.close()
 
-plt.style.use("../molecular_encodings/molecular.mplstyle")
+plt.style.use(MPL_FILE)
 fig, ax = plt.subplots(figsize=(3.2 * 1.5, 3.2 * 1.5), constrained_layout=True)
 ax.set_xticks(np.arange(len(smiles)))
 ax.set_xticklabels(smiles, rotation=90, fontsize='x-small')

@@ -1,7 +1,12 @@
+import sys
+sys.path.append("../") #TODO: Use dotenv to manage paths
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+
+from quantum_molecular_encodings.paths import MPL_FILE, FATTY_ACID_OVERLAPS_DIR
 
 feature_map_config = {
     "n_layers": 1,
@@ -12,23 +17,22 @@ feature_map_config = {
 }
 c_num = 34
 
-os.makedirs(f"fattyacids/carbon_{c_num}", exist_ok=True)
-PLOTDIR = f"fattyacids/carbon_{c_num}/"
+OVERLAPS_DIR = FATTY_ACID_OVERLAPS_DIR / f"carbon_{c_num}"
 
 # Define the path to the directory containing the Excel files
 directory = f"../data/fattyacids/carbon_{c_num}"
 
 # Load the Tanimoto similarity matrix
-tanimoto_df = pd.read_excel(os.path.join(directory, "tanimoto.xlsx"), index_col=0)
+tanimoto_df = pd.read_excel(os.path.join(OVERLAPS_DIR, "tanimoto.xlsx"), index_col=0)
 
 # Load the quantum overlap matrix
-quantum_overlap_df = pd.read_excel(os.path.join(directory, f"statevector_{feature_map_config['initial_layer']}_{feature_map_config['entangling_layer']}_Lx{feature_map_config['n_layers']}.xlsx"), index_col=0)
+quantum_overlap_df = pd.read_excel(os.path.join(OVERLAPS_DIR, f"statevector_{feature_map_config['initial_layer']}_{feature_map_config['entangling_layer']}_Lx{feature_map_config['n_layers']}.xlsx"), index_col=0)
 
 # Load the circuit size matrix
-circuit_size_df = pd.read_excel(os.path.join(directory, f"circuit_size_{feature_map_config['initial_layer']}_{feature_map_config['entangling_layer']}_Lx{feature_map_config['n_layers']}.xlsx"), index_col=0)
+circuit_size_df = pd.read_excel(os.path.join(OVERLAPS_DIR, f"circuit_size_{feature_map_config['initial_layer']}_{feature_map_config['entangling_layer']}_Lx{feature_map_config['n_layers']}.xlsx"), index_col=0)
 
 # Configure the plot style
-plt.style.use("../molecular_encodings/molecular.mplstyle")
+plt.style.use(MPL_FILE)
 
 # Function to plot heatmap with inset colorbar and save to file
 
@@ -83,4 +87,4 @@ ax.set_title(title)
 plt.colorbar(im, ax=axes[1], location='right', orientation='vertical')
 
 plt.savefig("fig3.pdf")
-plt.show()
+plt.close()

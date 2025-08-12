@@ -1,12 +1,15 @@
+import sys
+sys.path.append("../")  # TODO: Use dotenv to manage paths
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
+from quantum_molecular_encodings.paths import MPL_FILE, MASTER_SCORES_FILE
+plt.style.use(MPL_FILE)
 
-plt.style.use("../molecular_encodings/molecular.mplstyle")
-
-source_file = "../data/paper_classification/master_scores.xlsx"
+source_file = MASTER_SCORES_FILE
 
 
 
