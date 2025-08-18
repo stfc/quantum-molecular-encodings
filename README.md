@@ -10,7 +10,7 @@
 <h4 align="center">Code and data from the publication by <a href="http://arxiv.org/abs/2507.20422" target="_blank">Boy et al. (2025)</a></h4>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/?">
+  <a href="https://arxiv.org/abs/2507.20422">
     <img src="https://img.shields.io/badge/arXiv-2507.20422-b31b1b.svg"
          alt="arXiv">
   </a>
