@@ -113,5 +113,5 @@ This project uses the [Apache License 2.0](LICENSE).
 
 > [hartree.stfc.ac.uk](https://www.hartree.stfc.ac.uk/) &nbsp;&middot;&nbsp;
 > [ch.cam.ac.uk](https://www.ch.cam.ac.uk/) &nbsp;&middot;&nbsp;
-> GitHub [@stfc](https://github.com/stfc) [@edoaltamura](https://github.com/edoaltamura) [@bc537](https://github.com/bc537) &nbsp;&middot;&nbsp;
+> GitHub [@stfc](https://github.com/stfc) [@edoaltamura](https://github.com/edoaltamura) [@bc537](https://github.com/bc537) [@dilhanm](https://github.com/DilhanM) &nbsp;&middot;&nbsp;
 
