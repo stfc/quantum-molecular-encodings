@@ -24,10 +24,23 @@ ENCODING_LAYER_CONFIG = {
     "interleaved": None,
 }
 
-# File paths for noise model and hardware backend
-NOISE_MODEL_PATH = f"{BACKENDS_DIR}/fez_2024_12_22.noise_model.pkl"
-BACKEND_PATH = f"{BACKENDS_DIR}/fez_2024_12_22.backend_image.pkl"
-SAMPLER_TYPE = "statevector"
+# device, date and time for the noise model and backend target
+device = "ibm_pittsburgh"
+year = 2025
+month = 8
+day = 10
+hour = 18
+minute = 59
+second = 40
+
+# Generate filename timestamp
+timestamp_str = f"{year:04d}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}+00:00"
+base_filename = f"{device}_{timestamp_str}"
+
+# File paths for noise model and hardware backend target
+NOISE_MODEL_PATH = f"{BACKENDS_DIR}/{base_filename}_noise_model.pkl"
+TARGET_PATH = f"{BACKENDS_DIR}/{base_filename}_target.pkl"
+SAMPLER_TYPE = "statevector"  # Options: "statevector" or "noisy_aer"
 NUM_SHOTS = 10_000
 
 
@@ -53,16 +66,16 @@ if SAMPLER_TYPE == "statevector":
     from qiskit.primitives import StatevectorSampler
 
     sampler = StatevectorSampler(default_shots=NUM_SHOTS)
-    device_backend = None
+    device_backend_target = None
     pass_manager = generate_preset_pass_manager(optimization_level=3)
 
 elif SAMPLER_TYPE == "noisy_aer":
     from qiskit_aer.primitives import SamplerV2
 
     # Load backend and noise model
-    device_backend = load_pickle(BACKEND_PATH)
+    device_backend_target = load_pickle(TARGET_PATH)
     noise_model = load_pickle(NOISE_MODEL_PATH)
-    pass_manager = generate_preset_pass_manager(optimization_level=3, backend=device_backend)
+    pass_manager = generate_preset_pass_manager(optimization_level=3, target=device_backend_target)
 
     backend_options = {
         "method": "statevector",
@@ -79,17 +92,24 @@ else:
     raise ValueError("Invalid sampler type")
 
 # Load molecular data
-HYDROCARBON_DATA_FILE = EXCEL_DATA_DIR / 'hydrocarbon_oxygen_reordered_series.xlsx'
-HYDROCARBON_DATA_FILE = DA
-dataframe = pd.read_excel(HYDROCARBON_DATA_FILE, sheet_name='data', header=0)
-dataframe = dataframe.loc[dataframe['Number of Oxygens'] == 1]
+DATA_FILE = EXCEL_DATA_DIR / 'hydrocarbon_oxygen_reordered_series.xlsx'
+
+# choose wchich data to use
+dataset_type = "alkanes" # options: "alkanes" or "oxygen"
+assert dataset_type in ["alkanes", "oxygen"], "Invalid dataset type"
+
+dataframe = pd.read_excel(DATA_FILE, sheet_name='data', header=0)
+if dataset_type == "alkanes":
+    dataframe = dataframe.loc[dataframe['Number of Oxygens'] == 0]
+elif dataset_type == "oxygen":
+    dataframe = dataframe.loc[dataframe['Number of Oxygens'] == 1]
 
 smiles_list = dataframe['SMILES'].to_list()
 num_carbons = dataframe['Number of Atoms'].to_numpy()
 
 # Prepare log file
 log_filename = '_'.join([
-    "overlap", "oxygen",
+    "overlap", dataset_type,
     f"{SAMPLER_TYPE}",
     f"{ENCODING_LAYER_CONFIG['initial_layer']}",
     f"{ENCODING_LAYER_CONFIG['entangling_layer']}",
@@ -102,7 +122,7 @@ with open(log_filename, 'w') as log_file:
     print(f"# num_shots = {NUM_SHOTS}", file=log_file)
     print(f"# encoding_layer_config = {ENCODING_LAYER_CONFIG}", file=log_file)
     print(f"# noise_model_path = {NOISE_MODEL_PATH}", file=log_file)
-    print(f"# backend_path = {BACKEND_PATH}", file=log_file)
+    print(f"# backend_target_path = {TARGET_PATH}", file=log_file)
     print(f"# sampler_type = {SAMPLER_TYPE}", file=log_file)
     print("# i, j, expectation-value", file=log_file)
 
@@ -125,6 +145,6 @@ with open(log_filename, 'w') as log_file:
 
 
     # Load index pairs and process them
-    index_pairs = np.genfromtxt("delta_num_atoms_oxygen.txt", delimiter=',', dtype=int).T[:2].T
+    index_pairs = np.genfromtxt(f"delta_num_atoms_{dataset_type}.txt", delimiter=',', dtype=int).T[:2].T
     for idx_a, idx_b in tqdm(index_pairs):
         run_and_log_expectation(idx_a, idx_b)

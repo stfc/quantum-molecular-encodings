@@ -58,7 +58,7 @@ python-dateutil==2.9.0.post0
 pytz==2025.2
 pyzmq==27.0.1
 qiskit==1.4.3
-qiskit-aer==0.17.1
+qiskit-aer==0.16.1
 qiskit-ibm-runtime==0.41.0
 qiskit-machine-learning==0.8.2
 rdkit==2025.3.5
