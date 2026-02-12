@@ -1,8 +1,5 @@
 
 <h1 align="center">
-  <br>
-  <a href="https://arxiv.org/abs/?"><img src="https://raw.githubusercontent.com/stfc/quantum-molecular-encodings/master/app/img/markdownify.png" alt="Icon" width="200"></a>
-  <br>
   Quantum molecular encodings
   <br>
 </h1>
@@ -54,19 +51,22 @@
 ## How to cite
 
 ```bibtex
-@ARTICLE{2025arXiv250720422B,
+@ARTICLE{2025MLS&T...6d5076B,
        author = {{Boy}, Choy and {Altamura}, Edoardo and {Manawadu}, Dilhan and {Tavernelli}, Ivano and {Mensa}, Stefano and {Wales}, David J.},
         title = "{Encoding molecular structures in quantum machine learning}",
-      journal = {arXiv e-prints},
-     keywords = {Quantum Physics},
+      journal = {Machine Learning: Science and Technology},
+     keywords = {quantum computing, computational chemistry, emerging technologies, Quantum Physics},
          year = 2025,
-        month = jul,
-          eid = {arXiv:2507.20422},
-        pages = {arXiv:2507.20422},
+        month = dec,
+       volume = {6},
+       number = {4},
+          eid = {045076},
+        pages = {045076},
+          doi = {10.1088/2632-2153/ae304f},
 archivePrefix = {arXiv},
        eprint = {2507.20422},
  primaryClass = {quant-ph},
-       adsurl = {https://ui.adsabs.harvard.edu/abs/2025arXiv250720422B},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2025MLS&T...6d5076B},
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
 ```
