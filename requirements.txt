@@ -77,7 +77,7 @@ symengine==0.13.0
 sympy==1.14.0
 threadpoolctl==3.6.0
 tinycss2==1.4.0
-tornado==6.5.2
+tornado==6.5.5
 tqdm==4.67.1
 traitlets==5.14.3
 typing-inspection==0.4.1
